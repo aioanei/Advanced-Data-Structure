@@ -2,10 +2,11 @@
 #define TREAP_H
 
 #include <bits/stdc++.h>
+#include "itree.h"
 
 using namespace std;
 
-class Treap {
+class Treap : public ITree{
 private:
     struct Node {
         int val, prio, sz;
@@ -27,14 +28,14 @@ private:
 
 public:
     Node* root;
-    Treap();
-    ~Treap();
+    Treap() = default;
+    ~Treap() override = default;
 
-    void insert(int val);
-    void erase(int val);
-    int greaterOrEqual(int val);
-    int lessOrEqual(int val);
-    void print(int x, int y, ostream &out);
+    void insert(int val) override;
+    void erase(int val) override;
+    int greaterOrEqual(int val) override;
+    int lessOrEqual(int val) override;
+    void print(int x, int y, ostream &out) override;
 };
 
 #endif
