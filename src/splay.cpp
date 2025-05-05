@@ -3,6 +3,7 @@
 #include <numeric>
 #include <cassert>
 #include <iostream>
+#include <algorithm> // Add this include for std::max and std::reverse
 
 void SplayTree::setChild(int x, int y, bool dir) {
     if (x) tree[x].child[dir] = y;
@@ -98,8 +99,9 @@ int SplayTree::subtreeMax(int node) {
     return node;
 }
 
-SplayTree::SplayTree(int n) : tree(1 + n), freeindices(n), v(1 + n), root(0) {
-    std::iota(freeindices.rbegin(), freeindices.rend(), 1);
+SplayTree::SplayTree() : tree(1), v(1), root(0) {
+    // Initialize with only the sentinel node 0
+    // freeindices is initially empty
 }
 
 int SplayTree::valueFromKey(int key) {
@@ -115,7 +117,18 @@ void SplayTree::print(int l, int r, std::ostream& os) {
 }
 
 int SplayTree::insert(int value) {
-    assert(!freeindices.empty()); 
+    if (freeindices.empty()) {
+        size_t old_size = tree.size();
+        size_t new_size = std::max(old_size + 1, old_size * 2);
+        tree.resize(new_size);
+        v.resize(new_size);
+        for (size_t i = old_size; i < new_size; ++i) {
+            freeindices.push_back(i);
+        }
+        std::reverse(freeindices.begin(), freeindices.end());
+    }
+
+    assert(!freeindices.empty());
     if (freeindices.empty()) {
         return 0; 
     }

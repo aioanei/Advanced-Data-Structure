@@ -17,7 +17,7 @@ int main() {
     std::cout << "Number of operations: " << NUM_OPERATIONS << std::endl;
     std::cout << "Value range: [0, " << VALUE_RANGE << ")" << std::endl;
 
-    SplayTree tree(MAX_NODES);
+    SplayTree tree; // Fix: Remove parentheses to correctly declare an object
     std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count()); 
     std::uniform_int_distribution<int> op_dist(1, 6); 
     std::uniform_int_distribution<int> val_dist(0, VALUE_RANGE - 1); 
@@ -82,7 +82,7 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
     std::cout << "Benchmark finished." << std::endl;
-    std::cout << "Total time elapsed: " << duration.count()/1000 << "," << duration.count()%1000/10<<"s"<< std::endl;
+    std::cout << "Total time elapsed: " << duration.count()/1000 << "," << duration.count()%1000/10<<"s" << std::endl;
 
     return 0;
 }

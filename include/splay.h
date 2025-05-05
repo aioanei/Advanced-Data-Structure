@@ -27,7 +27,7 @@ private:
     int subtreeMax(int node);
 
 public:
-    SplayTree(int n);
+    SplayTree();
 
     int valueFromKey(int key);
     void print(int l, int r, std::ostream& os); 
