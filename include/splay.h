@@ -2,9 +2,9 @@
 #define SPLAY_H
 
 #include <vector>
-#include <numeric> // For std::iota
+#include <numeric>
 #include <cassert>
-#include <iosfwd>  // For std::ostream forward declaration
+#include <iosfwd>
 
 class SplayTree {
 private:
@@ -16,30 +16,26 @@ private:
     };
     std::vector<Node> tree;
     std::vector<int> freeindices;
-    std::vector<int> v; // Stores the actual values associated with keys
+    std::vector<int> v;
     int root;
-
-    // Private helper methods
     void setChild(int x, int y, bool dir);
     int direction(int x);
     void rotate(int x);
     void splay(int x);
     void _insert(int key);
     void _print(int node, int l, int r, std::ostream& os);
-    int subtreeMax(int node); // Renamed parameter for clarity
+    int subtreeMax(int node);
 
 public:
-    // Constructor
     SplayTree(int n);
 
-    // Public interface
-    int valueFromKey(int key); // Get value associated with a tree key
-    void print(int l, int r, std::ostream& os); // Print values in range [l, r]
-    int insert(int value); // Insert value, returns the key used
-    int smallerEqual(int value); // Key of largest value <= given value, 0 if none
-    int greaterEqual(int value); // Key of smallest value >= given value, 0 if none
-    bool find(int value); // Check if value exists
-    void erase(int value); // Erase value if present
+    int valueFromKey(int key);
+    void print(int l, int r, std::ostream& os); 
+    int insert(int value); 
+    int smallerEqual(int value); 
+    int greaterEqual(int value);
+    bool find(int value);
+    void erase(int value);
 };
 
-#endif // SPLAY_H
+#endif
