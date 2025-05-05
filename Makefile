@@ -5,7 +5,7 @@ SRCDIR := src
 BUILDDIR := build
 SOURCES := $(SRCDIR)/main.cpp $(SRCDIR)/splay.cpp $(SRCDIR)/treap.cpp $(SRCDIR)/benchmark.cpp
 
-TARGET := $(BUILDDIR)/main.exe
+TARGET := $(BUILDDIR)/main
 
 all: $(TARGET)
 
