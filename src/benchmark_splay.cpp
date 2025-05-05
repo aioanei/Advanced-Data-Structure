@@ -82,7 +82,7 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
     std::cout << "Benchmark finished." << std::endl;
-    std::cout << "Total time elapsed: " << duration.count()/1000 << "s" << std::endl;
+    std::cout << "Total time elapsed: " << duration.count()/1000 << "," << duration.count()%1000/10<<"s"<< std::endl;
 
     return 0;
 }
