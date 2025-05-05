@@ -1,6 +1,5 @@
 #pragma once
 
-#include <bits/stdc++.h>
 #include "itree.h"
 
 using namespace std;

@@ -1,5 +1,4 @@
 #pragma once
-#include <bits/stdc++.h>
 #include "../include/itree.h"
 
 using clk = std::chrono::high_resolution_clock;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <bits/stdc++.h>
 
 // common interface
 struct ITree {

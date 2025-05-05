@@ -1,9 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <numeric>
-#include <cassert>
-#include <iosfwd>
 #include "itree.h"
 
 class SplayTree : public ITree {

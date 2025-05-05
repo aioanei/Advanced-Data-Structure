@@ -1,9 +1,4 @@
 #include "../include/splay.h"
-#include <vector>
-#include <numeric>
-#include <cassert>
-#include <iostream>
-#include <algorithm> // Add this include for std::max and std::reverse
 
 void SplayTree::setChild(int x, int y, bool dir) {
     if (x) tree[x].child[dir] = y;

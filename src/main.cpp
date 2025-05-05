@@ -3,8 +3,8 @@
 #include "../include/benchmark.h"
 
 int main(int argc, char** argv) {
-    NUM_OPERATIONS       = 500000;
-    VALUE_RANGE          = 1000000;
+    NUM_OPERATIONS       = 50'000'000;
+    VALUE_RANGE          = 10;
     RANGE_QUERY_MAX_DIFF = 10000;
 
     std::vector<std::string> to_run;
