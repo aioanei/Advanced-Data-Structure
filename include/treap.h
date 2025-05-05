@@ -1,5 +1,4 @@
-#ifndef TREAP_H
-#define TREAP_H
+#pragma once
 
 #include <bits/stdc++.h>
 #include "itree.h"
@@ -37,5 +36,3 @@ public:
     int lessOrEqual(int val) override;
     void print(int x, int y, ostream &out) override;
 };
-
-#endif

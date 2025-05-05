@@ -1,12 +1,12 @@
-#ifndef SPLAY_H
-#define SPLAY_H
+#pragma once
 
 #include <vector>
 #include <numeric>
 #include <cassert>
 #include <iosfwd>
+#include "itree.h"
 
-class SplayTree {
+class SplayTree : public ITree {
 private:
     struct Node {
         int child[2], parent;
@@ -29,13 +29,12 @@ private:
 public:
     SplayTree();
 
+    ~SplayTree() override = default;
     int valueFromKey(int key);
-    void print(int l, int r, std::ostream& os); 
-    int insert(int value); 
-    int smallerEqual(int value); 
-    int greaterEqual(int value);
+    void print(int l, int r, std::ostream& os) override;
+    void insert(int value) override;
+    int lessOrEqual (int value) override;
+    int greaterOrEqual(int value) override;
     bool find(int value);
-    void erase(int value);
+    void erase(int value) override;
 };
-
-#endif

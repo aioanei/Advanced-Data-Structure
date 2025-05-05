@@ -13,8 +13,8 @@ void SplayTree::setChild(int x, int y, bool dir) {
 int SplayTree::direction(int x) {
     int parent = tree[x].parent;
 
-    if (parent == 0) return -1; 
-    if (tree[parent].child[0] == x) return 0; 
+    if (parent == 0) return -1;
+    if (tree[parent].child[0] == x) return 0;
     if (tree[parent].child[1] == x) return 1;
 
     assert(false);
@@ -25,7 +25,7 @@ void SplayTree::rotate(int x) {
     int y = tree[x].parent;
     int z = tree[y].parent;
     int dx = direction(x);
-    int dy = direction(y); 
+    int dy = direction(y);
 
     setChild(y, tree[x].child[dx ^ 1], dx);
     setChild(x, y, dx ^ 1);
@@ -34,29 +34,29 @@ void SplayTree::rotate(int x) {
     } else {
         tree[x].parent = 0;
     }
-    
+
 }
 
 void SplayTree::splay(int x) {
-    if (x == 0) return; 
-    while (direction(x) != -1) { 
+    if (x == 0) return;
+    while (direction(x) != -1) {
         int y = tree[x].parent;
-        int z = tree[y].parent; 
+        int z = tree[y].parent;
         int dx = direction(x);
         int dy = direction(y);
-        if (dy != -1) { 
-            if (dx == dy) rotate(y); 
-            else rotate(x); 
+        if (dy != -1) {
+            if (dx == dy) rotate(y);
+            else rotate(x);
         }
-        rotate(x); 
+        rotate(x);
     }
     root = x;
 }
 
 void SplayTree::_insert(int key) {
-    if (root == 0) { 
+    if (root == 0) {
         root = key;
-        tree[key].parent = 0; 
+        tree[key].parent = 0;
         return;
     }
 
@@ -68,7 +68,7 @@ void SplayTree::_insert(int key) {
             x = tree[x].child[0];
             lastDir = 0;
         } else {
-            x = tree[x].child[1]; 
+            x = tree[x].child[1];
             lastDir = 1;
         }
     }
@@ -84,15 +84,15 @@ void SplayTree::_print(int node, int l, int r, std::ostream& os) {
 
     _print(tree[node].child[0], l, r, os);
 
-    if (l <= v[node] && v[node] <= r) { 
+    if (l <= v[node] && v[node] <= r) {
         os << v[node] << ' ';
     }
 
-    _print(tree[node].child[1], l, r, os); 
+    _print(tree[node].child[1], l, r, os);
 }
 
 int SplayTree::subtreeMax(int node) {
-     if (node == 0) return 0; 
+     if (node == 0) return 0;
     while (tree[node].child[1]) {
         node = tree[node].child[1];
     }
@@ -106,7 +106,7 @@ SplayTree::SplayTree() : tree(1), v(1), root(0) {
 
 int SplayTree::valueFromKey(int key) {
     if (key <= 0 || key >= v.size()) {
-        return -1; 
+        return -1;
     }
     return v[key];
 }
@@ -116,7 +116,7 @@ void SplayTree::print(int l, int r, std::ostream& os) {
     os << '\n';
 }
 
-int SplayTree::insert(int value) {
+void SplayTree::insert(int value) {
     if (freeindices.empty()) {
         size_t old_size = tree.size();
         size_t new_size = std::max(old_size + 1, old_size * 2);
@@ -129,18 +129,14 @@ int SplayTree::insert(int value) {
     }
 
     assert(!freeindices.empty());
-    if (freeindices.empty()) {
-        return 0; 
-    }
     int freekey = freeindices.back();
     freeindices.pop_back();
     v[freekey] = value;
-    tree[freekey] = Node(); 
+    tree[freekey] = Node();
     _insert(freekey);
-    return freekey;
 }
 
-int SplayTree::smallerEqual(int value) {
+int SplayTree::lessOrEqual(int value) {
     int x = root, ans = 0;
     while (x != 0) {
         if (v[x] == value) {
@@ -149,9 +145,9 @@ int SplayTree::smallerEqual(int value) {
         }
         if (v[x] < value) {
             ans = x;
-            x = tree[x].child[1]; 
+            x = tree[x].child[1];
         } else {
-            x = tree[x].child[0]; 
+            x = tree[x].child[0];
         }
     }
 
@@ -159,10 +155,10 @@ int SplayTree::smallerEqual(int value) {
         splay(ans);
     }
 
-    return ans; 
+    return ans;
 }
 
-int SplayTree::greaterEqual(int value) {
+int SplayTree::greaterOrEqual(int value) {
     int x = root, ans = 0;
     while (x != 0) {
         if (v[x] == value) {
@@ -181,15 +177,15 @@ int SplayTree::greaterEqual(int value) {
         splay(ans);
     }
 
-    return ans; 
+    return ans;
 }
 
 bool SplayTree::find(int value) {
-    int x = smallerEqual(value); 
+    int x = lessOrEqual(value);
     if (x != 0 && v[x] == value) {
         return true;
     }
-    x = greaterEqual(value); 
+    x = greaterOrEqual(value);
     if (x != 0 && v[x] == value) {
         return true;
     }
@@ -197,9 +193,9 @@ bool SplayTree::find(int value) {
 }
 
 void SplayTree::erase(int value) {
-    int x = greaterEqual(value);
+    int x = greaterOrEqual(value);
     if (x == 0 || v[x] != value) {
-         x = smallerEqual(value);
+         x = lessOrEqual(value);
          if (x == 0 || v[x] != value) {
              return;
          }
