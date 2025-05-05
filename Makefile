@@ -1,17 +1,20 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Iinclude -Ibench -fpermissive
+CXXFLAGS := -std=c++20 -Wall -Iinclude -Ibench -fpermissive -O3 -w
 
 SRCDIR := src
-SOURCES := $(SRCDIR)/benchmark_splay.cpp $(SRCDIR)/splay.cpp $(SRCDIR)/treap.cpp
+BUILDDIR := build
+SOURCES := $(SRCDIR)/main.cpp $(SRCDIR)/splay.cpp $(SRCDIR)/treap.cpp $(SRCDIR)/benchmark.cpp
 
-TARGET := $(SRCDIR)/benchmark_splay.exe
+TARGET := $(BUILDDIR)/main.exe
 
 all: $(TARGET)
 
 $(TARGET): $(SOURCES)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	@mkdir -p $(BUILDDIR)
+	@$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:
-	rm -f $(TARGET)
+	@rm -rf $(BUILDDIR)
+	@rm -f results.csv
 
 .PHONY: all clean
