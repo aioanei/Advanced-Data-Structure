@@ -28,8 +28,8 @@ private:
 
 public:
     Node* root;
-    Treap() = default;
-    ~Treap() override = default;
+    Treap();
+    ~Treap() override;
 
     void insert(int val) override;
     void erase(int val) override;
