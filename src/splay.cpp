@@ -95,8 +95,6 @@ int SplayTree::subtreeMax(int node) {
 }
 
 SplayTree::SplayTree() : tree(1), v(1), root(0) {
-    // Initialize with only the sentinel node 0
-    // freeindices is initially empty
 }
 
 int SplayTree::valueFromKey(int key) {
