@@ -1,9 +1,9 @@
 CXX := g++
-CXXFLAGS := -std=c++20 -Wall -Iinclude -Ibench -fpermissive -O3 -w
+CXXFLAGS := -std=c++20 -Wall -Iinclude -Ibench -fpermissive -fsanitize=address,undefined,signed-integer-overflow -O3 -w
 
 SRCDIR := src
 BUILDDIR := build
-SOURCES := $(SRCDIR)/main.cpp $(SRCDIR)/splay.cpp $(SRCDIR)/treap.cpp $(SRCDIR)/benchmark.cpp
+SOURCES := $(SRCDIR)/main.cpp $(SRCDIR)/splay.cpp $(SRCDIR)/treap.cpp $(SRCDIR)/scapegoat.cpp $(SRCDIR)/benchmark.cpp
 
 TARGET := $(BUILDDIR)/main
 

@@ -1,5 +1,6 @@
 #include "../include/treap.h"
 #include "../include/splay.h"
+#include "../include/scapegoat.h"
 #include "../include/benchmark.h"
 
 int main(int argc, char** argv) {
@@ -9,7 +10,7 @@ int main(int argc, char** argv) {
 
     std::vector<std::string> to_run;
     if (argc == 1) {
-        to_run = {"treap", "splay"};
+        to_run = {"treap", "splay", "scapegoat"};
     } else {
         for (int i = 1; i < argc; ++i)
             to_run.push_back(argv[i]);
@@ -31,6 +32,12 @@ int main(int argc, char** argv) {
             long long ms = benchmark(t);
             csv << "mixed_workload,splay," << NUM_OPERATIONS << ',' << ms << '\n';
             std::cout << "Splay finished in " << ms << " ms\n";
+        }
+        else if (bst == "scapegoat") {
+            ScapegoatTree t;
+            long long ms = benchmark(t);
+            csv << "mixed_workload,scapegoat," << NUM_OPERATIONS << ',' << ms << '\n';
+            std::cout << "Scapegoat finished in " << ms << " ms\n";
         }
         else {
             std::cerr << "Unknown tree: " << bst  << '\n';

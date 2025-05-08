@@ -1,5 +1,6 @@
 #include "../include/treap.h"
 #include "../include/splay.h"
+#include "../include/scapegoat.h"
 #include "../include/benchmark.h"
 
 int NUM_OPERATIONS       = 500000;
@@ -69,3 +70,4 @@ long long benchmark(Tree& tree) {
 
 template long long benchmark<Treap>(Treap&);
 template long long benchmark<SplayTree>(SplayTree&);
+template long long benchmark<ScapegoatTree>(ScapegoatTree&);
