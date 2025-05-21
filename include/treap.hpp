@@ -31,6 +31,7 @@ public:
 
     void insert(int val) override;
     void erase(int val) override;
+    bool find(int val) override;
     int greaterOrEqual(int val) override;
     int lessOrEqual(int val) override;
     void print(int x, int y, ostream &out) override;

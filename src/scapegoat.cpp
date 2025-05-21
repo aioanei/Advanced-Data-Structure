@@ -153,54 +153,25 @@ void ScapegoatTree::insert(int val) {
 }
 
 void ScapegoatTree::erase(int val) {
-    root = _erase(root, val);
+    // root = _erase(root, val);
 
-    current_nodes--;
-    if (current_nodes < alpha * max_nodes) {
-        max_nodes = current_nodes;
-        root = _rebuildTree(root, nullptr);
-    }
+    // current_nodes--;
+    // if (current_nodes < alpha * max_nodes) {
+    //     max_nodes = current_nodes;
+    //     root = _rebuildTree(root, nullptr);
+    // }
 }
 
 bool ScapegoatTree::find(int val) {
-    Node *current = root;
-    while (current) {
-        if (current->value == val) return true;
-        if (current->value > val) current = current->left;
-        else current = current->right;
-    }
-
     return false;
 }
 
 int ScapegoatTree::greaterOrEqual(int val) {
-    Node *current = root;
-    int candidate = INVALID;
-
-    while (current) {
-        if (current->value >= val) {
-            candidate = current->value;
-            current = current->left;
-        } else
-            current = current->right;
-    }
-
-    return candidate;
+    return 1;
 }
 
 int ScapegoatTree::lessOrEqual(int val) {
-    Node *current = root;
-    int candidate = INVALID;
-
-    while (current) {
-        if (current->value <= val) {
-            candidate = current->value;
-            current = current->right;
-        } else
-            current = current->left;
-    }
-
-    return candidate;
+    return 1;
 }
 
 void ScapegoatTree::print(int x, int y, std::ostream& os) {

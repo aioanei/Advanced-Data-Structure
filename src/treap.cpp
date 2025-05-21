@@ -128,6 +128,17 @@ void Treap::erase(int val) {
     delete sol2.first;
 }
 
+bool Treap::find(int val) {
+    Node *current = root;
+    while (current) {
+        if (current->val == val) return true;
+        if (current->val > val) current = current->left;
+        else current = current->right;
+    }
+
+    return false;
+}
+
 int Treap::greaterOrEqual(int val) {
     Node *current = root;
     int candidate = INVALID;
