@@ -1,5 +1,7 @@
 #include "../include/scapegoat.hpp"
+#include <cassert>
 #include <cmath>
+#include <iostream>
 
 const int ScapegoatTree::INF = 1e9;
 const int ScapegoatTree::INVALID = ScapegoatTree::INF + 1;
@@ -153,25 +155,56 @@ void ScapegoatTree::insert(int val) {
 }
 
 void ScapegoatTree::erase(int val) {
-    // root = _erase(root, val);
+    if (find(val) == false)
+        return;
+    root = _erase(root, val);
 
-    // current_nodes--;
-    // if (current_nodes < alpha * max_nodes) {
-    //     max_nodes = current_nodes;
-    //     root = _rebuildTree(root, nullptr);
-    // }
+    current_nodes--;
+    if (current_nodes < alpha * max_nodes) {
+        max_nodes = current_nodes;
+        root = _rebuildTree(root, nullptr);
+    }
 }
 
 bool ScapegoatTree::find(int val) {
+    Node *current = root;
+    while (current) {
+        if (current->value == val) return true;
+        if (current->value > val) current = current->left;
+        else current = current->right;
+    }
+
     return false;
 }
 
 int ScapegoatTree::greaterOrEqual(int val) {
-    return 1;
+    Node *current = root;
+    int candidate = INVALID;
+
+    while (current) {
+        if (current->value >= val) {
+            candidate = current->value;
+            current = current->left;
+        } else
+            current = current->right;
+    }
+
+    return candidate;
 }
 
 int ScapegoatTree::lessOrEqual(int val) {
-    return 1;
+    Node *current = root;
+    int candidate = INVALID;
+
+    while (current) {
+        if (current->value <= val) {
+            candidate = current->value;
+            current = current->right;
+        } else
+            current = current->left;
+    }
+
+    return candidate;
 }
 
 void ScapegoatTree::print(int x, int y, std::ostream& os) {

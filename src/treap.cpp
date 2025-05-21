@@ -121,6 +121,7 @@ void Treap::insert(int val) {
 }
 
 void Treap::erase(int val) {
+    if (!find(val)) return;
     pair<Node*, Node*> sol = _splitByValue(root, val - 1);
     pair<Node*, Node*> sol2 = _splitBySize(sol.second, 1);
     root = _join(sol.first, sol2.second);
