@@ -1,13 +1,11 @@
-#include "../include/treap.h"
-#include "../include/splay.h"
-#include "../include/scapegoat.h"
-#include "../include/benchmark.h"
+#include "../include/treap.hpp"
+#include "../include/splay.hpp"
+#include "../include/scapegoat.hpp"
+#include "../include/benchmark.hpp"
+
+#include <fstream>
 
 int main(int argc, char** argv) {
-    NUM_OPERATIONS       = 50'000'000;
-    VALUE_RANGE          = 10;
-    RANGE_QUERY_MAX_DIFF = 10000;
-
     std::vector<std::string> to_run;
     if (argc == 1) {
         to_run = {"treap", "splay", "scapegoat"};
@@ -22,6 +20,7 @@ int main(int argc, char** argv) {
 
     for (const std::string& bst : to_run) {
         if (bst == "treap") {
+            std::cout << "Running treap...\n";
             Treap t;
             long long ms = benchmark(t);
             csv << "mixed_workload,treap," << NUM_OPERATIONS << ',' << ms << '\n';

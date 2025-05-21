@@ -1,4 +1,5 @@
-#include "../include/scapegoat.h"
+#include "../include/scapegoat.hpp"
+#include <cmath>
 
 const int ScapegoatTree::INF = 1e9;
 const int ScapegoatTree::INVALID = ScapegoatTree::INF + 1;
@@ -125,7 +126,7 @@ int ScapegoatTree::_maxDepth() const {
     return log2(max_nodes) / log2(1.0 / alpha);
 }
 
-ScapegoatTree::ScapegoatTree(double alpha = 0.75) : alpha(alpha) {
+ScapegoatTree::ScapegoatTree(double alpha) : alpha(alpha) {
     root = nullptr;
     current_nodes = max_nodes = 0;
 }

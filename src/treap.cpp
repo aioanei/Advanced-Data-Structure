@@ -1,4 +1,6 @@
-#include "../include/treap.h"
+#include "../include/treap.hpp"
+#include <random>
+#include <chrono>
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -13,7 +15,7 @@ const int Treap::INVALID = Treap::INF + 1;
 
 // node functions
 
-Treap::Node::Node(int _val = 0) {
+Treap::Node::Node(int _val) {
     val = _val;
     sz = 1;
     prio = random(INF);

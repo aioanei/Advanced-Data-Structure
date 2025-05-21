@@ -1,6 +1,8 @@
 #pragma once
 
-#include "itree.h"
+#include "itree.hpp"
+#include <span>
+#include <vector>
 
 class ScapegoatTree : public ITree {
 private:

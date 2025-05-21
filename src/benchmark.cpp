@@ -1,11 +1,11 @@
-#include "../include/treap.h"
-#include "../include/splay.h"
-#include "../include/scapegoat.h"
-#include "../include/benchmark.h"
+#include "../include/treap.hpp"
+#include "../include/splay.hpp"
+#include "../include/scapegoat.hpp"
+#include "../include/benchmark.hpp"
 
-int NUM_OPERATIONS       = 500000;
-int VALUE_RANGE          = 1000000;
-int RANGE_QUERY_MAX_DIFF = 10000;
+const int NUM_OPERATIONS       = 5'000'000;
+const int VALUE_RANGE          = 1'000'000;
+const int RANGE_QUERY_MAX_DIFF = 10000;
 
 template<class Tree>
 long long benchmark(Tree& tree) {
@@ -20,6 +20,9 @@ long long benchmark(Tree& tree) {
     auto t0 = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < NUM_OPERATIONS; ++i) {
+        if (i % 1'000'000 == 0)
+            std::cerr << "Operation " << i << " of " << NUM_OPERATIONS << '\n';
+        // std::cerr << i << '\n';
         int op    = op_dist(rng);
         int value = val_dist(rng);
 

@@ -1,4 +1,6 @@
-#include "../include/splay.h"
+#include "../include/splay.hpp"
+#include <algorithm>
+#include <cassert>
 
 void SplayTree::setChild(int x, int y, bool dir) {
     if (x) tree[x].child[dir] = y;

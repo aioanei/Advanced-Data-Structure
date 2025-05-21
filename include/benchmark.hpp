@@ -1,5 +1,9 @@
 #pragma once
-#include "../include/itree.h"
+
+#include "itree.hpp"
+#include <chrono>
+#include <iostream>
+#include <random>
 
 using clk = std::chrono::high_resolution_clock;
 
@@ -23,13 +27,13 @@ inline void print_csv(const Result& r) {
 
 inline std::mt19937& rng() {
     static thread_local std::mt19937 gen{
-        static_cast<int>(clk::now().time_since_epoch().count())};
+        static_cast<std::bernoulli_distribution::result_type>(static_cast<int>(clk::now().time_since_epoch().count()))};
     return gen;
 }
 
-extern int NUM_OPERATIONS;
-extern int VALUE_RANGE;
-extern int RANGE_QUERY_MAX_DIFF;
+extern const int NUM_OPERATIONS;
+extern const int VALUE_RANGE;
+extern const int RANGE_QUERY_MAX_DIFF;
 
 
 template<class Tree>

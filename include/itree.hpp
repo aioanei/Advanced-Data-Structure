@@ -1,8 +1,8 @@
 #pragma once
 
-#include <bits/stdc++.h>
-
 // common interface
+#include <ostream>
+
 struct ITree {
     virtual ~ITree() = default;
     virtual void insert(int) = 0;
